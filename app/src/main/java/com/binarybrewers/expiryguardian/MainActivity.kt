@@ -35,6 +35,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.binarybrewers.expiryguardian.ui.theme.ExpiryGuardianTheme
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +49,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     MainScreen(navController)
-//                    Greeting("Android")
                 }
             }
         }
@@ -118,6 +118,7 @@ sealed class NavigationItem(var route: String, var icon: ImageVector, var title:
     object Categories : NavigationItem("Categories", Icons.Rounded.List, "Categories")
 }
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun Navigations(navController: NavHostController) {
     NavHost(navController, startDestination = NavigationItem.Home.route) {
@@ -128,11 +129,6 @@ fun Navigations(navController: NavHostController) {
             CategoriesScreen()
         }
     }
-}
-
-@Composable
-fun HomeScreen() {
-    CenterText(text = "Home")
 }
 
 @Composable
